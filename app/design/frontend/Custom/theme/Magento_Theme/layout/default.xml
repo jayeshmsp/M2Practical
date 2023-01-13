@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="cookie-status-check" remove="true"/>
+     <referenceBlock name="catalog.compare.link" remove="true"/>
+     <referenceBlock name="header.panel.wrapper" remove="true"/>
+
+        <move element="navigation.sections" destination="header-wrapper" after="logo"/>
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="form.subscribe" remove="true" />
+
+        <move element="top.search" destination="customheader.container" before="-"/>
+        <move element="minicart" destination="customheader.container" after="top.search"/>
+        <move element="authorization-link" destination="customheader.container" after="-"/>
+        <move element="customheader.container" destination="header-wrapper" after="navigation.sections"/>
+        <container name="customheader.container" as="someContainer" label="Some Container" htmlTag="div" htmlClass="custom-header-container" ></container>
+
+    </body>
+</page>

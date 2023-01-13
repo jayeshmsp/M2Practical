@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/>
+        <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
+        <move element="product.info.customdescription" destination="product.info.main" after="page.main.title"/>
+
+        <move element="product.info.productextraimages" destination="product.info.media" after="-"/>
+
+        <move element="view.addto.wishlist" destination="product.info.media" before="-"/>
+        
+            <move element="product.info.imagedecription" destination="columns" after="customMainall.container"/>
+        <move element="product.info.overview" destination="product.info.main" after="product.info.price"/>
+                <referenceBlock name="product.info.stock.sku" remove="true" />
+
+         <referenceBlock name="view.addto.compare" remove="true" />
+             <!-- <referenceBlock name="view.addto.wishlist" remove="true" /> -->
+             <referenceBlock name="reviews.tab" remove="true" />
+                     <referenceBlock name="product.review.form" remove="true" />
+        <referenceBlock name="product.info.review" remove="true" />
+
+         <referenceBlock name="breadcrumbs" remove="true"/>
+          <move element="customMainall.container" destination="columns" before="-"/>
+        
+         <container name="customTab.container" as="detail_container" label="Detail Container"  htmlTag="div" htmlClass="custom-tab-productpage col-md-3 hidden-xs"/>
+        <container name="customImageInfo.container" as="detail_container" label="Detail Container"  htmlTag="div" htmlClass="custom-image-info-productpage col-md-9"/>
+
+         <container name="customMainall.container" as="detail_container" label="Detail Container"  htmlTag="div" htmlClass="custom-main-all-productpage row"/>
+
+         <move element="customTab.container" destination="customMainall.container" before="-"/>
+         <move element="customImageInfo.container" destination="customMainall.container" after="customTab.container"/>
+
+        <move element="product.info.tabs" destination="customTab.container" before="-"/>
+        <move element="product.info.media" destination="customImageInfo.container" before="-"/>
+        <move element="product.info.main" destination="customImageInfo.container" after="-"/>
+
+        <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.customdescription" template="product/view/attribute.phtml" after="product.info.type">
+          <arguments>
+            <argument name="at_call" xsi:type="string">getCustomDescription</argument>
+            <argument name="at_code" xsi:type="string">custom_description</argument>
+            <argument name="css_class" xsi:type="string">custom_description</argument>
+            <!-- <argument name="at_label" xsi:type="string">default</argument> -->
+            <argument name="add_attribute" xsi:type="string">itemprop="custom_description"</argument>
+          </arguments>
+        </block>
+         <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.imagedecription" template="product/view/attribute.phtml" after="product.info.type">
+          <arguments>
+            <argument name="at_call" xsi:type="string">getImageDecription</argument>
+            <argument name="at_code" xsi:type="string">image_decription</argument>
+            <argument name="css_class" xsi:type="string">image_decription</argument>
+            <!-- <argument name="at_label" xsi:type="string">default</argument> -->
+            <argument name="add_attribute" xsi:type="string">itemprop="image_decription"</argument>
+          </arguments>
+        </block>
+         <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.productextraimages" template="product/view/attribute.phtml" after="product.info.type">
+          <arguments>
+            <argument name="at_call" xsi:type="string">getProductExtraImages</argument>
+            <argument name="at_code" xsi:type="string">product_extra_images</argument>
+            <argument name="css_class" xsi:type="string">product_extra_images</argument>
+            <!-- <argument name="at_label" xsi:type="string">default</argument> -->
+            <argument name="add_attribute" xsi:type="string">itemprop="product_extra_images"</argument>
+          </arguments>
+        </block>
+
+
+
+    </body>
+</page>
